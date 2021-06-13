@@ -10,7 +10,7 @@
       booksList: '.books-list',
     },
     booksCover: {
-      images: '.book__image',
+      images: '.books-list .book__image',
     }
   };
 
@@ -63,14 +63,12 @@
   renderInBooks();
 
   const favoriteBooks = [];
-  console.log(favoriteBooks);
 
   function initActions(){
     
     /*referencję do listy wszystkich elementów .book__image w liście .booksList*/
     const booksContainer = document.querySelector(select.containerOf.booksList);
-    const booksImage = booksContainer.querySelectorAll('book__image');
-    console.log(booksImage);
+    const booksImage = booksContainer.querySelectorAll('.book__image');
     /*pętla po każdym elemencie z listy*/
     for (let image of booksImage){
       /*nasłuchiwacz uruchamiający funkcję dbclick i zatrzymujący domyślne zachowanie przeglądarki*/
