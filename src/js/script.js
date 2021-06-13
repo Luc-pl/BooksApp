@@ -10,7 +10,7 @@
       booksList: '.books-list',
     },
     booksCover: {
-      images: '.book_image',
+      images: '.book__image',
     }
   };
 
@@ -69,7 +69,7 @@
     
     /*referencję do listy wszystkich elementów .book__image w liście .booksList*/
     const booksContainer = document.querySelector(select.containerOf.booksList);
-    const booksImage = booksContainer.querySelectorAll('.book_image');
+    const booksImage = booksContainer.querySelectorAll('book__image');
     console.log(booksImage);
     /*pętla po każdym elemencie z listy*/
     for (let image of booksImage){
