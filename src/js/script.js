@@ -16,7 +16,7 @@
 
   const classNames = {
     books: {
-      favoriteBook: 'favorite .books-list',
+      favoriteBook: 'favorite.books-list',
     }
   };
 
@@ -87,7 +87,7 @@
           const idBook = image.getAttribute('data-id');
           favoriteBooks.push(idBook);
         } else {
-          favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
+          //favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
           image.classList.remove(classNames.books.favoriteBook);
         }
       });
