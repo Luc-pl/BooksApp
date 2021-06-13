@@ -8,12 +8,15 @@
     },
     containerOf: {
       booksList: '.books-list',
+    },
+    booksCover: {
+      images: '.book_image',
     }
   };
 
   const classNames = {
     books: {
-      favoriteBook: 'favorite',
+      favoriteBook: 'favorite .books-list',
     }
   };
 
@@ -21,8 +24,30 @@
     bookTemplate: Handlebars.compile(document.querySelector(select.templateOf.bookTemplate).innerHTML),
   };
 
+  /*class Bookslist {
+    constructor(){
+      const thisBooksList = this;
+
+      thisBooksList.renderInBooks();
+      thisBooksList.initAction();
+    }
+    initData() {
+      const thisBooksList = this;
+      thisBooksList.data = dataSource.books;
+
+      thisBooksList.favoriteBooks = [];
+      thisBooksList.filters = [];
+    }
+    getElements() {
+      const thisBooksList = this;
+      thisBooksList.booksContainer = document.querySelector(select.containerOf.booksList);
+      thisBooksList.booksFiltered = document.querySelector(select.containerOf.filters);
+    }
+  }*/
+
   /* funkcja render*/
   function renderInBooks() {
+    
 
     /*pętla po każdym elemencie - książce z dataSource.books*/
     for (let book of dataSource.books) {
@@ -41,8 +66,10 @@
   console.log(favoriteBooks);
 
   function initActions(){
+    
     /*referencję do listy wszystkich elementów .book__image w liście .booksList*/
-    const booksImage = document.querySelectorAll(select.booksCover.images);
+    const booksContainer = document.querySelector(select.containerOf.booksList);
+    const booksImage = booksContainer.querySelectorAll('.book_image');
     console.log(booksImage);
     /*pętla po każdym elemencie z listy*/
     for (let image of booksImage){
@@ -50,13 +77,24 @@
       image.addEventListener('dblclick', function (event){
         event.preventDefault();
         /*dodanie do klikniętego elementu klasy favorite*/
-        image.classList.add(classNames.books.favoriteBook);
+        image.classList.add('favorite');
         /*pobranie z jego data-id identyfikatora - id książki*/
         const idBook = image.getAttribute('data-id');
         /*dodanie identyfikatora do tablicy favoriteBooks*/
         favoriteBooks.push(idBook);
+        console.log(idBook);
+        //ĆWICZENIE NR 3
+        if (!image.classList.contains('favorite')) {
+          image.classList.add(classNames.books.favoriteBook);
+          const idBook = image.getAttribute('data-id');
+          favoriteBooks.push(idBook);
+        } else {
+          favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
+          image.classList.remove(classNames.books.favoriteBook);
+        }
       });
     }
   }
   initActions();
+
 }
