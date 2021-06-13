@@ -16,7 +16,7 @@
 
   const classNames = {
     books: {
-      favoriteBook: 'favorite.books-list',
+      favoriteBook: 'favorite .books-list',
     }
   };
 
@@ -81,18 +81,19 @@
         /*dodanie identyfikatora do tablicy favoriteBooks*/
         favoriteBooks.push(idBook);
         console.log(idBook);
-        //ĆWICZENIE NR 3
+        //ĆWICZENIE NR 3*/
         if (!image.classList.contains('favorite')) {
           image.classList.add(classNames.books.favoriteBook);
           const idBook = image.getAttribute('data-id');
           favoriteBooks.push(idBook);
         } else {
-          favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
           image.classList.remove(classNames.books.favoriteBook);
+          favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);          
         }
       });
     }
   }
   initActions();
+  
 
 }
