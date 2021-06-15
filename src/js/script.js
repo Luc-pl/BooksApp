@@ -64,6 +64,8 @@
 
   //ĆWICZENIE 2
   const favoriteBooks = [];
+  const filters = [];
+  const filtr = document.querySelector('.filters');
 
   function initActions(){
     
@@ -100,6 +102,42 @@
         }
         */
       });
+    }
+    //ĆWICZENIE NR 5
+
+    //5.1.
+    filtr.addEventListener('change', function(event){
+      event.preventDefault();
+      if (event.target.tagName === 'INPUT' && event.target.type === 'checkbox'  && event.target.name==='filter') {
+        if (event.target.checked) {
+          filters.push(event.target.value);
+          console.log('warunek 1', filters);
+        } else {
+          filters.splice(filters.indexOf(event.target.value));
+          console.log('warunek 2');
+        }
+      }
+      filterBooks();
+    });
+
+    //5.2.
+    function filterBooks() {
+      for (let book of dataSource.books) {
+        let shouldBeHidden = false;
+        for (const filter of filters) {
+          if (!book.details[filter]) {
+            shouldBeHidden = true;
+            break;
+          }
+        }
+        if (shouldBeHidden) {
+          const bookCover = document.querySelector('.book__image[data-id="' + book.id + '"]');
+          bookCover.classList.add('hidden');
+        } else {
+          const bookCover = document.querySelector('.book__image[data-id="' + book.id + '"]');
+          bookCover.classList.remove('hidden');
+        }
+      }
     }
   }
   initActions();
