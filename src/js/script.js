@@ -75,6 +75,7 @@
       /*nasłuchiwacz uruchamiający funkcję dbclick i zatrzymujący domyślne zachowanie przeglądarki*/
       image.addEventListener('dblclick', function (event){
         event.preventDefault();
+        const image = event.target.offsetParent; //ĆWICZENIE NR 4
         const idBook = image.getAttribute('data-id');
         //ĆWICZENIE 3 
         if(!favoriteBooks.includes(idBook)){
