@@ -14,11 +14,11 @@
     }
   };
 
-  /*const classNames = {
+  const classNames = {
     books: {
-      favoriteBook: 'favorite .books-list',
+      favoriteBook: 'favorite',
     }
-  };*/
+  };
 
   const templates = {
     bookTemplate: Handlebars.compile(document.querySelector(select.templateOf.bookTemplate).innerHTML),
@@ -62,6 +62,7 @@
   }
   renderInBooks();
 
+  //ĆWICZENIE 2
   const favoriteBooks = [];
 
   function initActions(){
@@ -74,21 +75,29 @@
       /*nasłuchiwacz uruchamiający funkcję dbclick i zatrzymujący domyślne zachowanie przeglądarki*/
       image.addEventListener('dblclick', function (event){
         event.preventDefault();
-        /*dodanie do klikniętego elementu klasy favorite*/
-        image.classList.add('favorite');
-        /*pobranie z jego data-id identyfikatora - id książki*/
         const idBook = image.getAttribute('data-id');
-        /*dodanie identyfikatora do tablicy favoriteBooks*/
-        favoriteBooks.push(idBook);
-        console.log(idBook);
-        //ĆWICZENIE NR 3
-        if(!favoriteBooks.constains(idBook)){
-          image.classList.add('favorite');
+        //ĆWICZENIE 3 
+        if(!favoriteBooks.includes(idBook)){
+          image.classList.add(classNames.books.favoriteBook);
           favoriteBooks.push(idBook);
         } else {
-          image.classList.remove('favorite');
+          image.classList.remove(classNames.books.favoriteBook);
           favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
         }
+                
+        /*
+        if(!image.classList.contains(classNames.books.favoriteBook)){
+          //dodanie do klikniętego elementu klasy favorite
+          image.classList.add(classNames.books.favoriteBook);
+          //pobranie z jego data-id identyfikatora - id książki
+          //dodanie identyfikatora do tablicy favoriteBooks
+          favoriteBooks.push(idBook);
+          console.log(idBook);
+        } else {
+          favoriteBooks.splice(favoriteBooks.indexOf(idBook), 1);
+          image.classList.remove(classNames.books.favoriteBook);          
+        }
+        */
       });
     }
   }
