@@ -155,6 +155,12 @@
           const bookCover = document.querySelector('.book__image[data-id="' + book.id + '"]');
           bookCover.classList.remove('hidden');
         }
+        /*Krótszy zapis
+        const bookCover = document.querySelector('.book__image[data-id="' + book.id + '"]');
+        if (shouldBeHidden) bookCover.classList.add('hidden');
+        else bookCover.classList.remove('hidden');*/
+
+        /*Można też skorzystać z toggle: bookCover.classList.toggle('hidden', shouldBeHidden);*/
       }
     }
     
@@ -176,6 +182,5 @@
 
   }
 
-  const app = new BooksList;
-  app; 
+  new BooksList();
 }
